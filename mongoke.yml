@@ -1,5 +1,5 @@
 schema: |
-  enum ContributionType {
+  enum ActivityType {
     talk
     article
     foss
@@ -11,18 +11,18 @@ schema: |
     video
   }
 
-  type Contribution {
+  type Activity {
     _id: ObjectId
     id: Int
     date: Date
     title: String
     description: String
-    type: ContributionType
+    type: ActivityType
     categories: String
     videos: String
     url: String
   }
 
 types:
-  Contribution:
-    collection: contributions
+  Activity:
+    collection: activities
