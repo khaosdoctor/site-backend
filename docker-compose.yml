@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  backend:
+    ports:
+      - 80:80
+    image: mongoke/mongoke
+    environment:
+      DB_URL: mongodb://mongo/contributions
+      PORT: "80"
+    volumes:
+      - ./mongoke.yml:/conf.yml
+  mongo:
+    image: mvertes/alpine-mongo
+    ports:
+      - 27017:27017

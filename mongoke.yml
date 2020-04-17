@@ -1,0 +1,28 @@
+schema: |
+  enum ContributionType {
+    talk
+    article
+    foss
+    other
+    host
+    book
+    event
+    podcast
+    video
+  }
+
+  type Contribution {
+    _id: ObjectId
+    id: Int
+    date: Date
+    title: String
+    description: String
+    type: ContributionType
+    categories: String
+    videos: String
+    url: String
+  }
+
+types:
+  Contribution:
+    collection: contributions
