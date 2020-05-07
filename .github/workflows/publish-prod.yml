@@ -22,6 +22,9 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
+      - name: Create URL
+        run: echo ::set-env name=MONGOKE_URL::${{ env.MONGOKE_CONFIG_URL }}?v=${GITHUB_SHA:0:6}
+          
       - name: Deploy ACI
         run: |
             az container create \
@@ -31,7 +34,7 @@ jobs:
             --location brazilsouth \
             --dns-name-label ${{ env.DNS_LABEL }} \
             --ports 80 \
-            --environment-variables MONGOKE_CONFIG_URL=format('{{{0}?v={1}}}', ${{env.MONGOKE_CONFIG_URL}}, ${GITHUB_SHA:0:6}) $ DB_URL=${{ secrets.MONGODB_URI }}
+            --environment-variables MONGOKE_CONFIG_URL=$MONGOKE_URL $ DB_URL=${{ secrets.MONGODB_URI }}
              
              
              
