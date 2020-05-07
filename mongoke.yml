@@ -26,3 +26,4 @@ schema: |
 types:
   Activity:
     collection: activities
+    
