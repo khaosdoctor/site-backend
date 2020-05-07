@@ -34,7 +34,7 @@ jobs:
             --location brazilsouth \
             --dns-name-label ${{ env.DNS_LABEL }} \
             --ports 80 \
-            --environment-variables MONGOKE_CONFIG_URL=$MONGOKE_URL $ DB_URL=${{ secrets.MONGODB_URI }}
+            --environment-variables MONGOKE_CONFIG_URL=$MONGOKE_URL DB_URL=${{ secrets.MONGODB_URI }}
              
              
              
