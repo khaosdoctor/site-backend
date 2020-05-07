@@ -9,6 +9,7 @@ schema: |
     event
     podcast
     video
+    live
   }
 
   type Activity {
