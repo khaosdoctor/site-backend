@@ -10,7 +10,7 @@ env:
   RESOURCE_GROUP_NAME: personal-website
   CONTAINER_NAME: personal-website-backend
   DNS_LABEL: lsantos-api
-  MONGOKE_CONFIG_URL: 'https://lsantos.me/site-backend/mongoke.yml?v='
+  MONGOKE_CONFIG_URL: 'https://lsantos.me/site-backend/mongoke.yml'
 
 jobs:
   publish:
@@ -31,7 +31,7 @@ jobs:
             --location brazilsouth \
             --dns-name-label ${{ env.DNS_LABEL }} \
             --ports 80 \
-            --environment-variables MONGOKE_CONFIG_URL='${{ env.MONGOKE_CONFIG_URL }}$GITHUB_SHA' DB_URL=${{ secrets.MONGODB_URI }}
+            --environment-variables MONGOKE_CONFIG_URL=format('{{{0}?v={1}}}', ${{env.MONGOKE_CONFIG_URL}}, ${GITHUB_SHA:0:6}) $ DB_URL=${{ secrets.MONGODB_URI }}
              
              
              
