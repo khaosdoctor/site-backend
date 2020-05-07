@@ -24,7 +24,6 @@ jobs:
           
       - name: Deploy ACI
         run: |
-            export MONGOKE_URL=${{ env.MONGOKE_CONFIG_URL }}$(git rev-parse --short "$GITHUB_SHA")
             az container create \
             --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
             --name ${{ env.CONTAINER_NAME }} \
@@ -32,7 +31,7 @@ jobs:
             --location brazilsouth \
             --dns-name-label ${{ env.DNS_LABEL }} \
             --ports 80 \
-            --environment-variables MONGOKE_CONFIG_URL=$MONGOKE_URL DB_URL=${{ secrets.MONGODB_URI }}
+            --environment-variables MONGOKE_CONFIG_URL='${{ env.MONGOKE_CONFIG_URL }}${GITHUB_SHA:0:6}' DB_URL=${{ secrets.MONGODB_URI }}
              
              
              
